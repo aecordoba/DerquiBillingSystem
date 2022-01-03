@@ -1,0 +1,57 @@
+<assembly>
+	<id>bin</id>
+	<!-- Specifies that our binary distribution is a zip package -->
+	<formats>
+		<format>zip</format>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+	<baseDirectory>DerquiBillingSystem</baseDirectory>
+
+	<!-- Adds dependencies to lib directory -->
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+			<unpack>false</unpack>
+			<!-- <excludes> <exclude>*:DerquiSystemsManager*:*</exclude> </excludes> -->
+		</dependencySet>
+		<!-- <dependencySet> <useProjectArtifact>true</useProjectArtifact> <outputDirectory>bin</outputDirectory> 
+			<unpack>false</unpack> <includes> <include>*:DerquiSystemsManager*:*</include> 
+			</includes> </dependencySet> -->
+	</dependencySets>
+
+	<!-- Adds configuration files to the config directory -->
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}/config</directory>
+			<outputDirectory>config</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<!-- Adds startup scripts to the root directory of package. -->
+		<fileSet>
+			<directory>${project.basedir}/src/scripts</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>run.sh</include>
+			</includes>
+			<fileMode>0755</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/scripts</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>run.bat</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>bin</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

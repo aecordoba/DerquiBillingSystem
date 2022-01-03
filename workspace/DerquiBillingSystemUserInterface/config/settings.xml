@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<comment>Derqui Billing System configuration file</comment>
+	<common-services>
+		<database>
+			<pool-size>3</pool-size>
+			<driver>com.mysql.jdbc.Driver</driver>
+			<connection-string>jdbc:mysql://localhost:3306/ac1
+			</connection-string>
+		</database>
+	</common-services>
+</config>
