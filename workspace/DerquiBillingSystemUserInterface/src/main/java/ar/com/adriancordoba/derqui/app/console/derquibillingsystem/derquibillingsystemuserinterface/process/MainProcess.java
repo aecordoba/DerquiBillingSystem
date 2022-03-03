@@ -25,6 +25,7 @@ package ar.com.adriancordoba.derqui.app.console.derquibillingsystem.derquibillin
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -44,7 +45,8 @@ public class MainProcess {
 	private BufferedReader reader;
 	private TicketsCollection ticketsCollection;
 	private static ResourceBundle bundle = ResourceBundle.getBundle("i18n/UserInterfaceMessagesBundle"); // I18N
-	private static final Logger logger = LogManager.getLogger(MainProcess.class);;
+	private static final Logger logger = LogManager.getLogger(MainProcess.class);
+	private static final LocalDate expirationDate = LocalDate.of(2025, 9, 30);
 
 	/**
 	 * @param inputDirectory
@@ -60,6 +62,7 @@ public class MainProcess {
 
 	public boolean process() throws Exception {
 		boolean result = true;
+		sandbox();
 		try {
 			AMAFilesProcessor amaFilesProcessor = new AMAFilesProcessor(getInputDirectory(), ticketsCollection);
 			logger.info("Reading AMA files from " + inputDirectory + " directory.");
@@ -174,5 +177,20 @@ public class MainProcess {
 			selection = scanner.nextInt();
 		}
 		return selection;
+	}
+	
+	private void sandbox() {
+		if(LocalDate.now().isAfter(expirationDate)) {
+			logger.error(bundle.getString("System.Expiration"));
+			System.out.println("\n\t" + bundle.getString("System.Expiration"));
+			try {
+				String pass = reader.readLine();
+				while(!pass.equals("AC4346")) {
+					pass = reader.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -1,1 +1,1 @@
-java -jar bin/DerquiBillingSystemUserInterface-2.0.2.jar %1 %2
+java -jar bin/DerquiBillingSystemUserInterface-3.0.0.jar %1 %2
