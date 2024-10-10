@@ -140,11 +140,18 @@ public class TicketsCollection {
 
 	private void saveFormatedTickets(String filename, List<Ticket> ticketsList) throws Exception {
 		File outputFile = FileHandler.getFile(filename);
+		int totalCalls = 0;
+		long totalTime = 0;
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
 		for (Ticket ticket : ticketsList) {
 			bufferedWriter.write(ticket.getFormatedTicket());
 			bufferedWriter.newLine();
+			totalCalls++;
+			totalTime += ticket.getDuration().getSeconds();
 		}
+		bufferedWriter.write("*************************************\n");
+		bufferedWriter.write("\t" + bundle.getString("System.TotalCalls") + " " + totalCalls + "\n");
+		bufferedWriter.write("\t" + bundle.getString("System.TotalTime") + " " + totalTime + "\n");
 		bufferedWriter.close();
 	}
 

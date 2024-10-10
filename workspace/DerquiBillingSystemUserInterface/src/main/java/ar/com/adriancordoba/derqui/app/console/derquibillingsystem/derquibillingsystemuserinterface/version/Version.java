@@ -31,7 +31,7 @@ import org.apache.logging.log4j.Logger;
  *
  */
 public class Version {
-	private static final String VERSION = "3.0.0";
+	private static final String VERSION = "3.1.0";
 
 	private static final Logger logger = LogManager.getLogger(Version.class);
 
